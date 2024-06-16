@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+<!-- Code displaying the main page which shows the Tasks list and Posts list, and which incorporates the links to the view, edit, delete functionality -->
+{% block main %}
+<div class="main px-lg-4 px-md-4">
+  <!-- Body: Body -->
+  <div class="body py-lg-3 py-md-2">
+    <div class="container-xxl">
+      <div class="row align-items-center">
+        <div class="border-0 mb-4">
+          <div
+            class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap"
+          >
+            <h3 class="fw-bold mb-0">All Tasks</h3>
+            <div class="col-auto d-flex w-sm-100">
+              <a href="{% url 'create_task' %}">
+                <button type="submit" class="btn btn-primary">
+                  <i class="bi bi-plus-square-fill"></i> Create Task
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Code for the actual list with tasks created -->
+      <div class="row clearfix g-3">
+        <div class="col-sm-12">
+          <div class="card mb-3">
+            <div class="card-body">
+              <table
+                id="myProjectTable"
+                class="table table-hover align-middle mb-0"
+                style="width: 100%"
+              >
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for task in tasks %}
+                  <tr>
+                    <td>
+                      <a href="{% url 'view_task' task.id %}"
+                        >{{ task.title }}</a
+                      >
+                    </td>
+                    <td>{{ task.deadline }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>
+                      <div
+                        class="btn-group gap-20"
+                        role="group"
+                        aria-label="Basic outlined example"
+                      > <!-- Code for the update option -->
+                        <a href="{% url 'update_task' task.id %}">
+                          <button type="button" class="btn btn-success">
+                            <i class="bi bi-pencil-square"></i>
+                          </button>
+                        </a>
+                        <form
+                          method="post"
+                          action="{% url 'delete_task' task.id %}"
+                          style="display: inline"
+                        > <!-- Code for the delete option -->
+                          {% csrf_token %}
+                          <button
+                            onclick="return confirmDelete('{{ task.title }}');"
+                            type="submit"
+                            class="btn btn-danger"
+                          >
+                            <i class="bi bi-x-square-fill"></i>
+                          </button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Row End -->
+    </div>
+    <div class="container-xxl">
+      <div class="row align-items-center">
+        <div class="border-0 mb-4">
+          <div
+            class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap"
+          >
+            <h3 class="fw-bold mb-0">All Posts</h3>
+            <div class="col-auto d-flex w-sm-100">
+              <a href="{% url 'create_post' %}">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  <i class="bi bi-plus-square-fill"></i> Create Post
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Code for the actual list with posts created -->
+      <div class="row clearfix g-3">
+        <div class="col-sm-12">
+          <div class="card mb-3">
+            <div class="card-body">
+              <table
+                id="myProjectTable"
+                class="table table-hover align-middle mb-0"
+                style="width: 100%"
+              >
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for post in posts %}
+                  <tr>
+                    <td>
+                      <a href="{% url 'view_post' post.id %}">
+                        {{ post.title }}
+                      </a>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    <td></td>
+                    <td>
+                      <div
+                        class="btn-group gap-20"
+                        role="group"
+                        aria-label="Basic outlined example"
+                      >
+                        <a href="{% url 'update_post' post.id %}">
+                          <button type="button" class="btn btn-success">
+                            <i class="bi bi-pencil-square"></i>
+                          </button>
+                        </a> <!-- Code for the update option for the Posts -->
+                        <form
+                          method="post"
+                          action="{% url 'delete_post' post.id %}"
+                          style="display: inline"
+                        > <!-- Code for the delete option for the Posts -->
+                          {% csrf_token %}
+                          <button
+                            onclick="return confirmDelete('{{ post.title }}');"
+                            type="submit"
+                            class="btn btn-danger"
+                          >
+                            <i class="bi bi-x-square-fill"></i>
+                          </button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Row End -->
+    </div>
+  </div>
+  {% endblock main %} 
+  <!-- Code for the deletion confirmation script -->
+  {% block scripts %}
+  <script>
+    function confirmDelete(title) {
+      return confirm('Are you sure you want to delete "' + title + '"?');
+    }
+  </script>
+  {% endblock scripts %}
+</div>

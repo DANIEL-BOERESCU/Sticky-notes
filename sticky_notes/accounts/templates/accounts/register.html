@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/accounts.css">
+{% endblock head %}
+
+{% block main %}
+<div class="main px-lg-4 px-md-4">
+    <div style="display: flex; justify-content: center; align-items: center; height: 80vh;">
+        <div class="form-container">
+            <h2>Register</h2>
+
+            <form method="post">
+                {% csrf_token %}
+                <!-- Render form fields with customized error messages -->
+                {{ form.username.errors }}
+                {{ form.username.label_tag }}{{ form.username }}
+                <br>
+                {{ form.email.errors }}
+                {{ form.email.label_tag }}{{ form.email }}
+                <br>
+                {{ form.password1.errors }}
+                {{ form.password1.label_tag }}{{ form.password1 }}
+                <br>
+                {{ form.password2.errors }}
+                {{ form.password2.label_tag }}{{ form.password2 }}
+
+                <button type="submit">Register</button>
+            </form>
+            <a href="{% url 'login' %}">Already have an Account?</a>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock main %}

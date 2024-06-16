@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/accounts.css">
+{% endblock head %}
+
+{% block main %}
+
+<!-- main body area -->
+<div class="main px-lg-4 px-md-4">
+
+    <!-- Body: Body -->
+    <div style="display: flex; justify-content: center; align-items: center; height: 80vh;">
+        <div class="form-container">
+            <h2>Login</h2>
+            <form method="post" novalidate>
+                {% csrf_token %}
+                <div class="form-group">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                    {% endfor %}
+                    {% endif %}
+                    {% for field in form %}
+                    <div class="form-field">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.errors %}
+                        <div class="error">
+                            {% for error in field.errors %}
+                            <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <a href="{% url 'register' %}">Create an Account?</a>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock main %}

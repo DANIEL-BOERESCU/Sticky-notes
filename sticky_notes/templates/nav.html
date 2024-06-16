@@ -1,0 +1,21 @@
+<!-- Code for allowing the navigation within menus  -->
+
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            Sticky Notes
+        </a>
+        <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center">
+            {% if request.user.is_authenticated %}
+            <div class="u-info me-2">
+                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">{{ request.user.username}}</span></p>
+                <small><a href="{% url 'logout' %}">Logout</a></small>
+            </div>
+            {% else %}
+            <div class="u-info me-2">
+                <small><a href="{% url 'login' %}">Login</a></small>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</nav>

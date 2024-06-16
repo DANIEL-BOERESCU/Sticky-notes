@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% if task %} View Task
+        {% elif post %} View Post
+        {% endif %}
+    </title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<!-- Code for displaying a task's or post's details once it's been created  -->
+<body>
+    <div class="blog-card">
+        <div class="inner-part">
+            <div class="content content-1">
+                {% if task %} <!-- Code for the task  -->
+                <div class="title">Task Title: {{ task.title }}</div>
+                <h2>Content:</h2>
+                <div class="text">{{ task.description }}</div>
+                <span>Deadline: {{ task.deadline }}</span>
+                <span>Label: {{ task.status }}</span>
+                {% elif post %} <!-- Code for the post  -->
+                <div class="title">Post Title: {{ post.title }}</div>
+                <h2>Content:</h2>
+                <div class="text">{{ post.content }}</div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary"><a href="{% url 'home' %}" style="color: white;" >Back to Home</a></button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
