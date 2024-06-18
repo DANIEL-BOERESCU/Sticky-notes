@@ -54,7 +54,9 @@ class TaskAndPostTests(TestCase):
 
     # Test for deleting a post
     def test_delete_post_view(self):
-        response = self.client.post(reverse("delete_post", args=[self.post.id]))
+        response = self.client.post(
+            reverse("delete_post", args=[self.post.id])
+        )
         self.assertEqual(response.status_code, 302)  # Expecting a redirect
         with self.assertRaises(Post.DoesNotExist):
             Post.objects.get(id=self.post.id)

@@ -63,7 +63,9 @@ class TaskTests(TestCase):
 
     # Test task deletion
     def test_task_deletion(self):
-        response = self.client.post(reverse("delete_task", args=[self.task.id]))
+        response = self.client.post(
+            reverse("delete_task", args=[self.task.id])
+        )
         self.assertEqual(response.status_code, 302)  # Expecting a redirect
         with self.assertRaises(Task.DoesNotExist):
             Task.objects.get(id=self.task.id)

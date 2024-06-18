@@ -2,8 +2,6 @@
 
 from django import forms
 
-from app.models import Task
-
 from django.contrib.auth.models import User
 
 from django.contrib.auth.forms import UserCreationForm
@@ -46,7 +44,9 @@ class RegisterForm(UserCreationForm):
             )
         if not any(char.isdigit() for char in password1):
             errors.append(
-                forms.ValidationError("The password must contain at least one digit.")
+                forms.ValidationError(
+                    "The password must contain at least one digit."
+                )
             )
 
         if errors:

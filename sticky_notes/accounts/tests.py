@@ -3,8 +3,6 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
-from accounts.forms import RegisterForm, CustomAuthenticationForm
-from django.contrib.auth import authenticate
 
 
 # code for testing the Register functionality
