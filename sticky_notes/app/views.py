@@ -2,13 +2,13 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import *
+from .forms import TaskForm
 
-from .models import *
+from .models import Task
 
 from django.contrib.auth.decorators import login_required
 
-from posts.models import *
+from posts.models import Post
 
 
 # Code for the Home view

@@ -1,7 +1,7 @@
 # posts/forms.py
 
 from django import forms
-from .models import *
+from .models import Post
 
 
 # Code for the Post Form class

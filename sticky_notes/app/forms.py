@@ -1,7 +1,7 @@
 # app/forms.py
 
 from django import forms
-from .models import *
+from .models import Task
 
 
 # code for the Task class form

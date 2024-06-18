@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 
 from django.contrib.auth import authenticate, login, logout
 
-from accounts.forms import *
+from accounts.forms import RegisterForm, CustomAuthenticationForm
 
 from django.contrib import messages
 

@@ -2,7 +2,7 @@
 
 from django import forms
 
-from app.models import *
+from app.models import Task
 
 from django.contrib.auth.models import User
 
